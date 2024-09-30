@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156345227831",
+    "project_id": "farmbook-d28b6",
+    "storage_bucket": "farmbook-d28b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156345227831:android:e57c610c6c5c5ee99a3db2",
+        "android_client_info": {
+          "package_name": "com.example.farmbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpU-QMsEPSzYTK3AZkgIvIU2aDTAJZutc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
