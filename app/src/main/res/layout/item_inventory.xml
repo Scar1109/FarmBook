@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -7,28 +8,42 @@
     android:background="@drawable/item_background"
     android:layout_marginBottom="10dp"> <!-- Space between items -->
 
-<TextView
-android:id="@+id/tvItemName"
-android:layout_width="0dp"
-android:layout_height="wrap_content"
-android:layout_weight="1"
-android:text="Item Name"
-android:textSize="16sp"
-android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/tvItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:text="Item Name"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
-<TextView
-android:id="@+id/tvItemQuantity"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Stock: 0"
-android:textSize="14sp"
-android:textColor="@color/gray" />
+    <TextView
+        android:id="@+id/tvItemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Stock: 0"
+        android:textColor="@color/gray"
+        android:textSize="14sp" />
 
-<ImageButton
-android:id="@+id/btnDeleteItem"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:src="@drawable/ic_delete"
-android:background="?attr/selectableItemBackground"
-android:contentDescription="Delete Item" />
+    <ImageButton
+        android:id="@+id/btnEditItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="Delete Item"
+        android:src="@drawable/baseline_edit_24"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btnDeleteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="Delete Item"
+        android:src="@drawable/ic_delete"
+        tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>

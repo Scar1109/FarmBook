@@ -1,8 +1,12 @@
 package com.example.farmbook.modules
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.farmbook.R
@@ -18,6 +22,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var recentlyAddedAdapter: InventoryAdapter
     private lateinit var outOfStockAdapter: InventoryAdapter
     private lateinit var lowStockAdapter: InventoryAdapter
+    private lateinit var addItemLauncher: ActivityResultLauncher<Intent>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,14 @@ class HomeActivity : AppCompatActivity() {
 
         // Load data from Firestore
         loadInventoryData()
+
+        // Initialize the result launcher
+        addItemLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // Reload the data when returning from AddItemActivity
+                refreshInventoryLists()
+            }
+        }
 
         // Add new item on FAB click
         binding.fabAddItem.setOnClickListener {
@@ -100,4 +114,26 @@ class HomeActivity : AppCompatActivity() {
                 loadInventoryData() // Reload data after deletion
             }
     }
+
+    private fun refreshInventoryLists() {
+        // Load the data again from Firestore
+        db.collection("inventory").get()
+            .addOnSuccessListener { result ->
+                val items = result.toObjects(InventoryItem::class.java)
+
+                // Update the adapter for each section
+                val recentlyAddedItems = items.takeLast(10)  // Recently added
+                val lowStockItems = items.filter { it.stock in 1..49 }  // Low stock
+                val outOfStockItems = items.filter { it.stock == 0 }  // Out of stock
+
+                // Update each RecyclerView's adapter
+                recentlyAddedAdapter.updateData(recentlyAddedItems)
+                lowStockAdapter.updateData(lowStockItems)
+                outOfStockAdapter.updateData(outOfStockItems)
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to refresh lists: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }
