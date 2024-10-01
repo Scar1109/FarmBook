@@ -1,5 +1,6 @@
 package com.example.farmbook.modules
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
@@ -76,6 +77,9 @@ class SignupActivity : AppCompatActivity() {
             // Proceed with Firebase Registration
             registerUser(email, password, fullName)
         }
+        binding.tvSignIn.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 
     private fun registerUser(email: String, password: String, fullName: String) {
@@ -96,6 +100,7 @@ class SignupActivity : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
                                 // You can navigate to another activity here
+                                startActivity(Intent(this, HomeActivity::class.java))
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Failed to save user data: ${e.message}", Toast.LENGTH_SHORT).show()

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color for the lower part of the screen -->
+    <item>
+        <color android:color="#FFFFFF" />
+    </item>
+
+    <!-- Curved green top part -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#395F34" />
+            <corners android:bottomLeftRadius="200dp" />
+        </shape>
+    </item>
+
+</layer-list>

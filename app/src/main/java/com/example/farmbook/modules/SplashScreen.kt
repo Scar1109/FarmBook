@@ -35,7 +35,7 @@
             Handler(Looper.getMainLooper()).postDelayed({
                 if (currentUser != null) {
                     // User is logged in,
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                 } else {
                     // No user is logged in, redirect to LoginSignupPage
                     startActivity(Intent(this, SignupActivity::class.java))

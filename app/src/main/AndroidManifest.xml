@@ -16,6 +16,12 @@
         android:theme="@style/Theme.FarmBook"
         tools:targetApi="31">
         <activity
+            android:name=".modules.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modules.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".modules.SignupActivity"
             android:exported="false" />
         <activity
