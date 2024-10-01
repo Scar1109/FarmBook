@@ -1,6 +1,7 @@
 package com.example.farmbook.model
 
 data class InventoryItem(
+    var id: String = "",
     val name: String = "",
     val quality: String = "",
     val price: Double = 0.0,

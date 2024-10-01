@@ -5,40 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".modules.AddItemActivity">
+    tools:context=".modules.EditItemActivity">
 
-    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Add New Item"
-        android:textColor="@color/green"
+        android:text="Edit Item"
         android:textSize="24sp"
+        android:textColor="@color/green"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
 
     <!-- Input for Item Name -->
     <EditText
-        android:id="@+id/etItemName"
+        android:id="@+id/etEditItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/input_background"
         android:hint="Item Name"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/input_background"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
 
     <!-- Input for Item Quantity -->
     <EditText
-        android:id="@+id/etItemQuantity"
+        android:id="@+id/etEditItemQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Quantity"
@@ -46,7 +45,7 @@
         android:padding="16dp"
         android:background="@drawable/input_background"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/etItemName"
+        app:layout_constraintTop_toBottomOf="@id/etEditItemName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="20dp"
@@ -54,7 +53,7 @@
 
     <!-- Input for Item Price -->
     <EditText
-        android:id="@+id/etItemPrice"
+        android:id="@+id/etEditItemPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Price"
@@ -62,7 +61,7 @@
         android:padding="16dp"
         android:background="@drawable/input_background"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/etItemQuantity"
+        app:layout_constraintTop_toBottomOf="@id/etEditItemQuantity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="20dp"
@@ -70,17 +69,17 @@
 
     <!-- Submit Button -->
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
+        android:text="Update Item"
         android:backgroundTint="@color/green"
-        android:text="Add Item"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/etEditItemPrice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etItemPrice" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

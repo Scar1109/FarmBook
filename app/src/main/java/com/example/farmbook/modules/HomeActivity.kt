@@ -93,7 +93,11 @@ class HomeActivity : AppCompatActivity() {
         // Fetch all items from Firestore
         db.collection("inventory").get()
             .addOnSuccessListener { result ->
-                val items = result.toObjects(InventoryItem::class.java)
+                val items = result.documents.map { document ->
+                    var item = document.toObject(InventoryItem::class.java)
+                    item?.id = document.id  // Assign Firestore document ID to InventoryItem
+                    item
+                }.filterNotNull()
 
                 // Filter data for each section
                 val recentlyAddedItems = items.takeLast(5) // Assuming last added items
@@ -107,9 +111,10 @@ class HomeActivity : AppCompatActivity() {
             }
     }
 
+
     private fun deleteItem(item: InventoryItem) {
         // Delete item from Firestore
-        db.collection("inventory").document(item.name).delete()
+        db.collection("inventory").document(item.id).delete()
             .addOnSuccessListener {
                 loadInventoryData() // Reload data after deletion
             }
@@ -119,14 +124,18 @@ class HomeActivity : AppCompatActivity() {
         // Load the data again from Firestore
         db.collection("inventory").get()
             .addOnSuccessListener { result ->
-                val items = result.toObjects(InventoryItem::class.java)
+                val items = result.documents.map { document ->
+                    var item = document.toObject(InventoryItem::class.java)
+                    item?.id = document.id  // Ensure Firestore document ID is assigned
+                    item  // Return the item with the ID
+                }.filterNotNull()
 
-                // Update the adapter for each section
+                // Filter the data for each section
                 val recentlyAddedItems = items.takeLast(10)  // Recently added
                 val lowStockItems = items.filter { it.stock in 1..49 }  // Low stock
                 val outOfStockItems = items.filter { it.stock == 0 }  // Out of stock
 
-                // Update each RecyclerView's adapter
+                // Update the adapters for each section
                 recentlyAddedAdapter.updateData(recentlyAddedItems)
                 lowStockAdapter.updateData(lowStockItems)
                 outOfStockAdapter.updateData(outOfStockItems)
@@ -135,5 +144,6 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to refresh lists: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
 }
