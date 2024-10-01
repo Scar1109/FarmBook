@@ -16,6 +16,9 @@
         android:theme="@style/Theme.FarmBook"
         tools:targetApi="31">
         <activity
+            android:name=".modules.ViewAllItemsActivity"
+            android:exported="false" />
+        <activity
             android:name=".modules.AddItemActivity"
             android:exported="false" />
         <activity

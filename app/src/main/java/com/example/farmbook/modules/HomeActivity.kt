@@ -38,6 +38,24 @@ class HomeActivity : AppCompatActivity() {
         binding.fabAddItem.setOnClickListener {
             startActivity(Intent(this, AddItemActivity::class.java))
         }
+        binding.recentSeeAll.setOnClickListener {
+            val intent = Intent(this, ViewAllItemsActivity::class.java)
+            intent.putExtra("ITEM_TYPE", "Recently Added")
+            startActivity(intent)
+        }
+
+        binding.lowStockSeeAll.setOnClickListener {
+            val intent = Intent(this, ViewAllItemsActivity::class.java)
+            intent.putExtra("ITEM_TYPE", "Low Stock")
+            startActivity(intent)
+        }
+
+        binding.outStockViewAll.setOnClickListener {
+            val intent = Intent(this, ViewAllItemsActivity::class.java)
+            intent.putExtra("ITEM_TYPE", "Out Of Stock")
+            startActivity(intent)
+        }
+
     }
 
     private fun setupRecyclerViews() {
