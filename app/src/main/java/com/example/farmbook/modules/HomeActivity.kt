@@ -13,6 +13,7 @@ import com.example.farmbook.R
 import com.example.farmbook.adapter.InventoryAdapter
 import com.example.farmbook.databinding.ActivityHomeBinding
 import com.example.farmbook.model.InventoryItem
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var outOfStockAdapter: InventoryAdapter
     private lateinit var lowStockAdapter: InventoryAdapter
     private lateinit var addItemLauncher: ActivityResultLauncher<Intent>
+    private lateinit var auth: FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,8 @@ class HomeActivity : AppCompatActivity() {
 
         // Initialize Firestore
         db = FirebaseFirestore.getInstance()
+
+        auth = FirebaseAuth.getInstance()
 
         // Set up RecyclerViews
         setupRecyclerViews()
@@ -69,6 +74,17 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("ITEM_TYPE", "Out Of Stock")
             startActivity(intent)
         }
+
+        binding.logoutBtn.setOnClickListener {
+            auth.signOut() // Sign the user out from Firebase
+
+            // After logging out, redirect to the login screen
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear the task stack
+            startActivity(intent)
+            finish() // Close the HomeActivity
+        }
+
 
     }
 

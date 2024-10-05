@@ -53,7 +53,7 @@
             android:background="@drawable/input_background"
             android:drawableLeft="@drawable/ic_person"
             android:fontFamily="@font/poppins"
-            android:hint="Full Name"
+            android:hint="Email"
             android:padding="13dp" />
 
         <EditText
